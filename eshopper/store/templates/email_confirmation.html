@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <div class="container-order">
+        <div class="message-container">
+            <h2>Thank you {{ customer_name }}</h2>
+            <h2>Your <strong>Order</strong> has been placed</h2>
+            <p>You will receive
+                another confirmation of when your order has been shipped. You can also check
+                the status <br> of your order, in your orders.
+            </p>
+            <table style="min-width: 600px;min-height: 100px; border: 1px solid black;">
+                <thead>
+                    <tr style="background-color: #f2f2f2;">
+                        <th style="border: 1px solid black;">Item</th>
+                        <th style="border: 1px solid black;">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for x in order_items %}
+                    <tr>
+                        <td style="border: 1px solid black;">{{ x.title }}</td>
+                        <td style="border: 1px solid black;">£{{ x.price }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td style="font-weight: 900; border: 1px solid black;">Total</td>
+                        <td style="font-weight: 900; border: 1px solid black;">{{ total_price }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="message-container">
+        <p style="text-decoration: underline;">**This is a mock transaction. No monetary transaction has taken place. A
+            mock
+            order has been placed within our Database however, demonstrating how a real transaction would take place</p>
+    </div>
+
+</body>
+
+</html>

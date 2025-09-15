@@ -1,0 +1,34 @@
+body {
+    font-family: Tahoma, sans-serif;
+}
+
+.img-fluid {
+    max-width: none;
+}
+
+#brand-name {
+    font-size: 10rem;
+}
+
+#brand-message {
+    font-family: 'Courier New', monospace;
+    font-size: 4rem !important;
+}
+
+.hero-img {
+    margin: 0;
+    padding: 0;
+    width: 73vh;
+}
+
+#navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    transition: background-color 0.5s ease; /* Smooth transition */
+    background-color: transparent; /* Initial transparent state */
+}
+
+.scrolled {
+    background-color: black; /* Solid background color when scrolled */
+}

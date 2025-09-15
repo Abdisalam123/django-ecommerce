@@ -1,0 +1,47 @@
+body {
+    font-family: Tahoma, sans-serif;
+}
+
+.img-thumbnail {
+    width: 5rem;
+    height: 5rem;
+}
+
+table, th, tr, td {
+    padding: 2rem;
+    font-family: 'Times New Roman', serif;
+}
+
+#cart-modal {
+    display: block;
+    position: static;
+    --bs-modal-width: 100vh;
+    min-height: 100vh;
+}
+
+.cart-img {
+    width: 5rem;
+    height: 5rem;
+}
+
+.buynow {
+    position: relative;
+    left: -21vh;
+    float: right;
+    font-size: 1.3rem;
+}
+
+.buynow a {
+    position: relative;
+    left: 7rem;
+}
+
+#shipping-information-message {
+    font-size: 0.9rem; 
+    color: grey;
+}
+
+#footer {
+    position: static;
+    width: 100%;
+}

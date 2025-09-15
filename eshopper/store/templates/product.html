@@ -1,0 +1,111 @@
+{% extends "master.html" %}
+{% block content %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'product.css' %}">
+{% endblock extra_css %}
+<div class="container">
+
+    <table id="showcase-table">
+
+        <tbody>
+
+            <tr>
+
+                <th>
+
+                    <h1 class="product-title">
+                        {{ product.title }}
+                    </h1>
+
+                </th>
+
+                <th>
+                    <h1 class="price">£{{ product.price }}</h1>
+                </th>
+
+            </tr>
+
+            <tr>
+
+                <td>
+
+                    <img id="showcase-img" src="{% static Image %}" alt="">
+
+                </td>
+
+
+
+                <td id="deco-box">
+
+                    <div class="product-descriptBox">
+                        <br>
+                        <h5>
+
+                            {{ product.description }}
+
+                        </h5>
+                        <br>
+                        <br>
+                        <a href="{% url 'add_to_cart' product.title product.id product.price Image 'cart' %}"
+                            class="btn btn-danger btn-addToCart">Add to Cart</a>
+                        <br>
+                        <hr>
+                        <p id="product-details">
+
+                            Made in the UK <br>
+                            100% European Linen <br>
+                            Regular bodice length <br>
+                            Full skirt <br>
+                            Midi length <br>
+                            Key hole back <br>
+                            T-Shirt sleeve <br>
+                            Pull on design <br>
+                            Side seam pockets
+
+                        </p>
+                        <hr>
+                        <p id="environment-statement">
+
+                            The textile industry significantly impacts the environment through high energy
+                            consumption, vast water usage, and pollution from chemicals and microplastics,
+                            contributing to 10% of global carbon emissions. Fast fashion exacerbates these
+                            issues by
+                            promoting high-volume production and disposal, leading to textile waste in landfills
+                            and
+                            oceans. Solutions include promoting sustainable materials, improving dyeing and
+                            manufacturing processes, fostering the circular economy, and encouraging consumers
+                            to
+                            buy secondhand, choose quality, and reduce washing of synthetic clothes.
+
+                        </p>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+
+
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+    const navbar = document.getElementById('navbar');
+    navbar.style.backgroundColor = '#d1e7dd';
+</script>
+{% endblock %}

@@ -1,0 +1,19 @@
+body {
+    background: #ffffff;
+    min-height: 100vh;
+    font-family: Tahoma, sans-serif;
+}
+
+.img-thumbnail {
+    width: 5rem;
+    height: 5rem;
+}
+
+#login-container {
+    height: 81vh !important;
+}
+
+#footer {
+    position: static;
+    width: 100%;
+}

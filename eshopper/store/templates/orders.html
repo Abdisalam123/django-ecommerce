@@ -1,0 +1,53 @@
+{% extends "master.html" %}
+
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'orders.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<div class="modal" id="order-modal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-success-subtle">
+                <h2 class="modal-title" id="orderModalLabel">{{ Customer.First_Name }}'s Orders <i
+                        class="fa-regular fa-clock"></i></h2>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Order</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for x in Orders %}
+                            <tr>
+                                <td><a href="/orders/{{ x.id }}">Order#{{ x.id }}</a></td>
+                                <td>{{ x.date }}</td>
+                                {% if x.status %}
+                                <td>Shipped</td>
+                                {% else %}
+                                <td>Pending</td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block js %}
+<script>
+    const navbar = document.getElementById('navbar');
+    navbar.style.backgroundColor = '#d1e7dd';
+</script>
+{% endblock %}

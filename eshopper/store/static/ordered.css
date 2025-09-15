@@ -1,0 +1,31 @@
+body {
+    background: #ffffff;
+    min-height: 100vh;
+    font-family: Tahoma, sans-serif;
+}
+
+.img-thumbnail {
+    width: 5rem;
+    height: 5rem;
+}
+
+.img-container {
+    position: relative;
+    top: 14rem;
+    left: -1rem;
+}
+
+.container-order {
+    max-width: 100vh !important;
+}
+
+.message-container {
+    position: relative;
+    left: 20rem;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

@@ -1,0 +1,151 @@
+{% extends "master.html" %}
+{% block content %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'cart.css' %}">
+{% endblock extra_css %}
+<!-- Cart Modal -->
+<div class="modal" id="cart-modal" tabindex="-1" aria-labelledby="cart" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-success-subtle">
+                <h2 class="modal-title" id="cartModalLabel">Your Cart</h2>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width: 80px;"></th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if Cart.Quantity > 0 %}
+                            {% for product in Cart.Products.values %}
+                            <tr>
+                                <td><img class="cart-img" src="{% static product.Image %}" alt="cart image product alt description"></td>
+                                <td>{{ product.title }}</td>
+                                <td>£{{ product.Price }}</td>
+                                <td><a
+                                        href="{% url 'remove_from_cart' product.title product.Product_ID product.Price product.Image 'cart' %}"><i
+                                            class="fa-solid fa-minus"></i></a> &nbsp;{{ product.Quantity }}&nbsp; <a
+                                        href="{% url 'add_to_cart' product.title product.Product_ID product.Price product.Image 'cart' %}"><i
+                                            class="fa-solid fa-plus"></i></a></td>
+                                <td>£{{ product.Product_Total }}</td>
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                            <tr>
+                                <td colspan="5">No Items In Cart</td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                    <hr>
+                    <h2>
+                        Shipping Information:
+                    </h2>
+                    {% if Customer.First_Name == 'Guest' %}
+                    <p id="shipping-information-message">please enter your information below</p>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <form id="shipping-information" method="post" action="{% url 'order' %}">
+                                    {% csrf_token %}
+                                    <div class="mb-3">
+                                        <p>First Name</p>
+                                        <input class="form-control form-control-lg border-dark" type="text"
+                                            name="first_name" placeholder="First Name" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p>Last Name</p>
+                                        <input class="form-control form-control-lg border-dark" type="text"
+                                            name="last_name" placeholder="Last Name" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p>Address</p>
+                                        <input class="form-control form-control-lg border-dark" type="text"
+                                            name="address" placeholder="Address" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p>Email</p>
+                                        <input class="form-control form-control-lg border-dark" type="email"
+                                            name="email" placeholder="Email" required>
+                                    </div>
+                                    <div class="mb-4">
+                                        <p>Phone</p>
+                                        <input class="form-control form-control-lg border-dark" type="tel" name="phone"
+                                            placeholder="Phone Number" required>
+                                    </div>
+                                    <div class="mb-4">
+                                        <p>Password</p>
+                                        <input class="form-control form-control-lg border-dark" type="password" name="password" placeholder="Password" required>
+                                    </div>
+                                </form>
+                            </tr>
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <table>
+                        <tbody>
+                            <tr>
+                                <form id="shipping-information" method="post" action="{% url 'order' %}">
+                                    {% csrf_token %}
+                                    <div class="mb-3">
+                                        <p>First Name</p>
+                                        <input type="text" name="first_name" placeholder="{{ Customer.First_Name }}"
+                                            required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p>Last Name</p>
+                                        <input type="text" name="last_name" placeholder="{{ Customer.Last_Name }}"
+                                            required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p>Adress</p>
+                                        <input type="text" name="address" placeholder="{{ Customer.Address }}" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p>Email</p>
+                                        <input type="email" name="email" placeholder="{{ Customer.Email }}" required>
+                                    </div>
+                                    <div class="mb-4">
+                                        <p>Phone</p>
+                                        <input type="tel" name="phone" placeholder="{{ Customer.Phone }}" required>
+                                    </div>
+                                </form>
+                            </tr>
+                        </tbody>
+                    </table>
+                    {% endif %}
+                    <div style="float: right;">
+                        <div style="margin: 2rem;" class="d-flex justify-content-between align-items-center">
+                            {% if Cart.Cart_Total > 0 %}
+                            <h5 class="mb-0"><strong>Total: £{{ Cart.Cart_Total }}</strong></h5>
+                            {% else %}
+                            <h5 class="mb-0"><strong>Total: £0</strong></h5>
+                            {% endif %}
+                        </div>
+                        <div style="margin: 2rem;" class="d-flex justify-content-between align-items-center">
+                            <button type="submit" form="shipping-information" class="btn btn-success btn-lg bg-opacity-75">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p style="font-size: 0.9rem;">* Please note this is a mock transaction. This website is to demonstate the
+        functioning of an e-commerce site. No monetary transaction will take place if you click <code>buy now</code></p>
+    {% endblock %}
+
+    {% block js %}
+    <script>
+        const navbar = document.getElementById('navbar');
+        navbar.style.backgroundColor = '#d1e7dd';
+    </script>
+    {% endblock %}

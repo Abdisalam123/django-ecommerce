@@ -1,0 +1,110 @@
+{% extends "master.html" %}
+{% block content %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+{% endblock extra_css %}
+<!-- Hero Section -->
+<div class="container-fluid py-5 bg-gradient" style="background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 id="brand-name" class="display-3 fw-bold text-success mb-3">E-Sh<img class="img-thumbnail me-2"
+                    src="{% static 'EShopper_logo.png' %}" alt="E-Shopper" style="width: 100px; height: 100px;">pper
+            </h1>
+            <p id="brand-message" class="lead text-muted fs-4">Great deals, right in the feels!</p>
+        </div>
+
+        <div class="row d-flex flex-nowrap">
+
+            <div class="col-lg-6">
+                <img id="hero-img-left" class="img-fluid hero-img" src="{% static 'Untitled design.gif' %}" alt="">
+            </div>
+
+            <div class="col-lg-6">
+                <img class="img-fluid hero-img" src="{% static 'Untitled design2.gif' %}" alt="">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Products Section -->
+<div class="container py-5">
+    <h2 class="text-center mb-5 fw-bold text-dark">Featured Products</h2>
+
+    <div class="row g-4">
+        <!-- Product Cards -->
+        {% for x in Most_Sold_Products %}
+        <div class="col-lg-3 col-md-6">
+            <div class="card h-100 shadow-sm border-0">
+                <a href="/product/{{x.product.id}}"><img src="{% static x.image_path.path %}"
+                        class="card-img-top" alt="Product"></a>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ x.product.title }}</h5>
+                    <p class="card-text flex-grow-1">{{ x.product.description }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="h5 text-success fw-bold">£{{ x.product.price }}</span>
+                        <a style="float: right;"
+                            href="{% url 'add_to_cart' x.product.title x.product.id x.product.price x.image_path.path 'home' %}"
+                            class="btn btn-danger">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Hot Deals Section -->
+<div style="background-color: #d1e7dd;" class="container-fluid py-5 text-white">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">Hot Deals of the Week 🔥</h2>
+            <p class="lead">Limited time offers - Don't miss out!</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            {% for x in Hot_Products %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card bg-white text-dark h-100 shadow">
+                    <a href="/product/{{x.product.id}}"><img src="{% static x.image_path.path %}"
+                            class="card-img-top" alt=""></a>
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">{{ x.product.title }}</h5>
+                        <div class="my-3">
+                            <span class="h4 text-success fw-bold">£{{ x.product.price }}</span>
+                            <span class="text-muted text-decoration-line-through ms-2">£{{ x.price_cut }}</span>
+                            <span style="color: green !important;" class="text-muted ms-2">60% off</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a style="float: right;"
+                                href="{% url 'add_to_cart' x.product.title x.product.id x.product.price x.image_path.path 'home' %}"
+                                class="btn btn-danger">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+
+    window.addEventListener('scroll', function () {
+        const navbar = document.getElementById('navbar');
+
+        console.log(window.scrollY)
+        const scrollPosition = window.scrollY;
+        const scrollThreshold = 1000; // Change this value to adjust when the color changes
+
+        if (scrollPosition > scrollThreshold) {
+            navbar.style.backgroundColor = '#d1e7dd';
+        } if (scrollPosition < scrollThreshold) {
+            navbar.style.backgroundColor = 'transparent';
+        }
+    });
+
+</script>
+{% endblock %}

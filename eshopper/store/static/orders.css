@@ -1,0 +1,30 @@
+body {
+    font-family: Tahoma, sans-serif;
+}
+
+table, th, tr, td {
+    padding: 2rem;
+    font-family: 'Times New Roman', serif;
+}
+
+#order-modal {
+    display: block;
+    position: static;
+    --bs-modal-width: 100vh;
+    min-height: fit-content;
+}
+
+.order-img {
+    width: 5rem;
+    height: 5rem;
+}
+
+.order-details-sum {
+    font-weight: 900;
+}
+
+#footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}

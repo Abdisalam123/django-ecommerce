@@ -1,0 +1,54 @@
+{% extends "master.html" %}
+{% block content %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'orders.css' %}">
+{% endblock extra_css %}
+<div class="modal" id="order-modal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-success-subtle">
+                <h2 class="modal-title" id="orderModalLabel">{{ Customer.First_Name }}'s Orders <i
+                        class="fa-regular fa-clock"></i></h2>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Order</th>
+                                <th>Item</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for x in order_items %}
+                            <tr>
+                                <td>Order ID #{{ x.id }}</td>
+                                <td>{{ x }}</td>
+                                <td>£{{ x.price }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td class="order-details-sum">
+                                    Total
+                                </td>
+                                <td></td>
+                                <td class="order-details-sum">£{{ Sum }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block js %}
+    <script>
+        const navbar = document.getElementById('navbar');
+        navbar.style.backgroundColor = '#d1e7dd';
+    </script>
+    {% endblock %}

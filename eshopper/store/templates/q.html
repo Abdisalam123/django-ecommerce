@@ -1,0 +1,46 @@
+{% extends "master.html" %}
+{% block content %}
+{% load static %}
+<!-- Hero Section -->
+<div class="container-fluid py-5 bg-gradient" style="background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 style="font-size: 15rem;" class="display-3 fw-bold text-success mb-3">E-Shopper</h1>
+            <p style="font-size: 4rem !important;" class="lead text-muted fs-4">Great deals, right in the feels!</p>
+        </div>
+    </div>
+</div>
+
+<!-- Products Section -->
+<div class="container py-5">
+    <h2 class="text-center mb-5 fw-bold text-dark">Search Results</h2>
+
+    <div class="row g-4">
+        <!-- Product Cards -->
+        {% for x in Products %}
+        <div class="col-lg-3 col-md-6">
+            <div class="card h-100 shadow-sm border-0">
+                <img src="{% static x.image_path.path %}" class="card-img-top" alt="Product">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ x.product.title }}</h5>
+                    <p class="card-text flex-grow-1">{{ x.product.description }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="h5 text-success fw-bold">£{{ x.product.price }}</span>
+                        <a style="float: right;"
+                            href="{% url 'add_to_cart' x.product.title x.product.id x.product.price x.image_path.path 'home' %}"
+                            class="btn btn-danger">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+    const navbar = document.getElementById('navbar');
+    navbar.style.backgroundColor = '#d1e7dd';
+</script>
+{% endblock %}
