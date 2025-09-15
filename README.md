@@ -35,6 +35,10 @@ python manage.py runserver
 
 Navigate to `http://127.0.0.1:8000` to access the application.
 
+## Live Site
+
+If you want to view the live site and test it. [ Eshopper ](www.abdisalam.pythonanywhere.com)
+
 ## Configuration
 
 Most configuration options are available in `eshopper/settings.py`. Key settings include:
