@@ -401,6 +401,8 @@ def order(request):
                         'password': password
                     }
                 )
+                request.session['Customer'] = customer_obj
+                request.session.modified = True
             except Exception as e:
                 # Handle potential database errors
                 return redirect('home')
