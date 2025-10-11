@@ -37,7 +37,7 @@ Navigate to `http://127.0.0.1:8000` to access the application.
 
 ## Live Site
 
-If you want to view the live site and test it you can access it here [ Eshopper ](www.abdisalam.pythonanywhere.com)
+If you want to view the live site and test it you can access it here www.abdisalam.pythonanywhere.com
 
 ## Configuration
 
